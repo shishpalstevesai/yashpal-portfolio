@@ -120,13 +120,26 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
 }
 
 body {
   min-height: 100vh;
   overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
   background-color: var(--bg-canvas);
   position: relative;
+}
+
+#root,
+.portfolio-app,
+#main-content {
+  overflow-x: clip;
+  max-width: 100%;
+  width: 100%;
 }
 
 /* Focus Management for Accessibility */
@@ -190,14 +203,19 @@ img, svg {
   max-width: var(--container-max);
   margin-left: auto;
   margin-right: auto;
-  padding-left: clamp(1.25rem, 4vw, 3rem);
-  padding-right: clamp(1.25rem, 4vw, 3rem);
+  padding-left: clamp(1rem, 4vw, 3rem);
+  padding-right: clamp(1rem, 4vw, 3rem);
+  box-sizing: border-box;
 }
 
 .section {
-  padding-top: clamp(4.5rem, 8vw, 8rem);
-  padding-bottom: clamp(4.5rem, 8vw, 8rem);
+  padding-top: clamp(3.5rem, 7vw, 7.5rem);
+  padding-bottom: clamp(3.5rem, 7vw, 7.5rem);
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  box-sizing: border-box;
 }
 
 .section-divided {
@@ -490,6 +508,10 @@ img, svg {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .browser-frame:hover {
@@ -506,10 +528,14 @@ img, svg {
 .browser-header {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.75rem;
   padding: 0.65rem 1rem;
   background-color: var(--bg-surface-muted);
   border-bottom: 1px solid var(--border-light);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 [data-theme="light"] .browser-header {
@@ -519,6 +545,7 @@ img, svg {
 .browser-dots {
   display: flex;
   gap: 0.35rem;
+  flex-shrink: 0;
 }
 
 .browser-dot {
@@ -526,6 +553,7 @@ img, svg {
   height: 9px;
   border-radius: 50%;
   background-color: #d8d6cc;
+  flex-shrink: 0;
 }
 
 .browser-dot:nth-child(1) { background-color: #ff5f56; }
@@ -534,11 +562,12 @@ img, svg {
 
 .browser-address-bar {
   flex: 1;
+  min-width: 0;
   display: flex;
   align-items: center;
   gap: 0.45rem;
   background-color: var(--bg-canvas);
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.65rem;
   border-radius: var(--radius-xs);
   border: 1px solid var(--border-light);
   font-family: var(--font-mono);
@@ -547,6 +576,14 @@ img, svg {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.browser-address-bar span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
 }
 
 [data-theme="light"] .browser-address-bar {
